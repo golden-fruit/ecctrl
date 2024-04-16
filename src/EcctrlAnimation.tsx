@@ -5,9 +5,9 @@ import { useGame, type AnimationSet } from "./stores/useGame";
 
 export function EcctrlAnimation(props: EcctrlAnimationProps) {
   // Change the character src to yours
-  const group = useRef();
+  const groupRef = useRef();
   const { animations } = useGLTF(props.characterURL);
-  const { actions } = useAnimations(animations, group);
+  const { actions } = useAnimations(animations, groupRef);
 
   /**
    * Character animations setup
@@ -64,7 +64,7 @@ export function EcctrlAnimation(props: EcctrlAnimationProps) {
 
   return (
     <Suspense fallback={null}>
-      <group ref={group} dispose={null} userData={{ camExcludeCollision: true }}>
+      <group ref={groupRef} dispose={null} userData={{ camExcludeCollision: true }}>
         {/* Replace character model here */}
         {props.children}
       </group>

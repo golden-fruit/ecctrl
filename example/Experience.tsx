@@ -54,15 +54,14 @@ export default function Experience() {
 
   return (
     <>
-      <Perf position="top-left" minimal />
-
-      <Grid
+      {/* <Perf position="top-left" minimal /> */}
+      {/* <Grid
         args={[300, 300]}
         sectionColor={"lightgray"}
         cellColor={"gray"}
         position={[0, -0.99, 0]}
         userData={{ camExcludeCollision: true }} // this won't be collide by camera ray
-      />
+      /> */}
 
       <Lights />
 
@@ -90,26 +89,24 @@ export default function Experience() {
         {/* Rough plan */}
         <RoughPlane />
 
-        {/* Slopes and stairs */}
+        {/* 斜坡和楼梯 */}
         <Slopes />
-
-        {/* Small steps */}
         <Steps />
 
         {/* Rigid body objects */}
-        <RigidObjects />
+        {/* <RigidObjects /> */}
 
         {/* Floating platform */}
-        <FloatingPlatform />
+        {/* <FloatingPlatform /> */}
 
         {/* Dynamic platforms */}
-        <DynamicPlatforms />
+        {/* <DynamicPlatforms /> */}
 
         {/* Floor */}
         <Floor />
 
         {/* Shoting cubes */}
-        <ShotCube />
+        {/* <ShotCube /> */}
       </Physics >
     </>
   );
