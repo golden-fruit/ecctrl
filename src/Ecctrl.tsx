@@ -9,7 +9,7 @@ import {
   type RigidBodyProps,
   CylinderCollider,
 } from "@react-three/rapier";
-import { useEffect, useRef, useMemo, type ReactNode, forwardRef, type RefObject } from "react";
+import { useEffect, useRef, useMemo, type ReactNode, forwardRef, type ForwardRefRenderFunction, type RefObject } from "react";
 import * as THREE from "three";
 import { useControls } from "leva";
 import { useFollowCam } from "./hooks/useFollowCam";
@@ -20,6 +20,7 @@ import type {
   RayColliderToi,
   Vector,
 } from "@dimforge/rapier3d-compat";
+import React from "react";
 
 export { EcctrlAnimation } from "./EcctrlAnimation";
 export { useFollowCam } from "./hooks/useFollowCam";
@@ -45,7 +46,7 @@ const getMovingDirection = (forward: boolean,
   if (forward) return pivot.rotation.y;
 };
 
-const Ecctrl = forwardRef<RapierRigidBody, EcctrlProps>(({
+const Ecctrl: ForwardRefRenderFunction<RapierRigidBody, EcctrlProps> = ({
   children,
   debug = false,
   capsuleHalfHeight = 0.35,
@@ -966,6 +967,8 @@ const Ecctrl = forwardRef<RapierRigidBody, EcctrlProps>(({
   }, [])
 
   useFrame((state, delta) => {
+    if (delta > 1) delta %= 1;
+
     // Character current position
     if (characterRef.current) {
       currentPos.copy(characterRef.current.translation() as THREE.Vector3);
@@ -1427,9 +1430,9 @@ const Ecctrl = forwardRef<RapierRigidBody, EcctrlProps>(({
       </group>
     </RigidBody>
   );
-})
+}
 
-export default Ecctrl
+export default forwardRef(Ecctrl);
 
 export interface EcctrlProps extends RigidBodyProps {
   children?: ReactNode;
